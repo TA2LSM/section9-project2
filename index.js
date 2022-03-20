@@ -1,5 +1,9 @@
 const mongoose = require("mongoose");
 
+const Joi = require("joi");
+Joi.objectId = require("joi-objectid")(Joi);
+// Bu modül, Joi modülüne yeni bir metot (fonksiyon) ekliyor aslında.
+
 const genres = require("./routes/genres");
 const customers = require("./routes/customers");
 const movies = require("./routes/movies");

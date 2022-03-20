@@ -17,7 +17,7 @@ router.post("/", async (req, res) => {
   const genre = await Genre.findById(req.body.genreId);
   if (!genre) return res.status(400).send("Genre is not found on the database!");
 
-  let movie = new Movie({
+  const movie = new Movie({
     title: req.body.title,
     genre: {
       // sadece istenen özellikleri diğer döküman içerisine (embedded) olarak yazdık...
@@ -27,7 +27,7 @@ router.post("/", async (req, res) => {
     numberInStock: req.body.numberInStock,
     dailyRentalRate: req.body.dailyRentalRate,
   });
-  movie = await movie.save();
+  await movie.save();
 
   res.status(200).send(movie);
 });

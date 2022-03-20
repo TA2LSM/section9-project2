@@ -63,8 +63,8 @@ const Rental = mongoose.model("Rental", rentalSchema);
 // zaten kiralama zamanı db'e girildiği için gerekli hesaplamalar ileride server'da yapılabilir.
 function validateRental(rental) {
   const schema = {
-    movieId: Joi.string().required(),
-    customerId: Joi.string().required(),
+    movieId: Joi.objectId().required(),
+    customerId: Joi.objectId().required(),
   };
 
   return Joi.validate(rental, schema);

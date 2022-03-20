@@ -22,6 +22,15 @@ router.post("/", async (req, res) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
+  // validate fonksiyonu dönüşünde her verinin uygunluğunun tam oalrak sağlandığından
+  // emin olmak için aşağıdaki yöntem tercih edilmemiştir. DB içindeki _id'lerin
+  // geçerli olduğundan emin olmak için "joi-objectid" paketi kullanılmıştır.
+  // if (!mongoose.Types.ObjectId.isValid(req.body.movieId))
+  //   return res.status(400).send("Movie ID is not valid!");
+
+  // if (!mongoose.Types.ObjectId.isValid(req.body.customerId))
+  //   return res.status(400).send("Customer ID is not valid!");
+
   const movie = await Movie.findById(req.body.movieId);
   if (!movie) return res.status(400).send("The movie with the given ID was not found!");
 
